@@ -1,0 +1,306 @@
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+.shadow {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.feature-icon {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Features Section */
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card .feature-icon {
+    background: #f8f9fa;
+    color: #6c757d;
+    font-size: 2rem;
+}
+
+/* Stats Section */
+.stat-item h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Upload Section */
+.upload-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area {
+    border: 2px dashed #dee2e6;
+    border-radius: 10px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: #0d6efd;
+    background-color: #f8f9ff;
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.upload-label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.upload-info {
+    margin-top: 1rem;
+}
+
+/* Image Preview */
+.img-preview {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    border: 3px solid #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.img-preview > div {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Result Display */
+.result-display {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Technology Steps */
+.tech-step {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: #0d6efd;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Model Cards */
+.model-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.model-card:hover {
+    transform: translateY(-5px);
+}
+
+.model-icon {
+    font-size: 3rem;
+    color: #6c757d;
+}
+
+.model-specs {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Dataset Stats */
+.stat-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-box h4 {
+    margin-bottom: 0.25rem;
+}
+
+/* Application Cards */
+.application-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-5px);
+}
+
+.app-icon {
+    font-size: 2.5rem;
+    color: #6c757d;
+}
+
+/* Sign Class Cards */
+.sign-class-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.sign-class-card:hover {
+    transform: translateY(-5px);
+}
+
+.sign-class-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-class-id {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.sign-class-body {
+    padding: 1.5rem;
+}
+
+.sign-class-name {
+    color: #495057;
+    margin-bottom: 0.75rem;
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA Box */
+.cta-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section .display-4 {
+        font-size: 2rem;
+    }
+
+    .upload-card {
+        padding: 2rem;
+    }
+
+    .upload-area {
+        padding: 2rem;
+    }
+
+    .tech-step, .model-card, .application-card {
+        margin-bottom: 1rem;
+    }
+
+    .legend {
+        flex-direction: column;
+    }
+}
+
+/* Loading Animation */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Custom Badge Colors */
+.badge.bg-orange {
+    background-color: #fd7e14 !important;
+}
