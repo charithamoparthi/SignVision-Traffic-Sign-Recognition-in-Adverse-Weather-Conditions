@@ -1,0 +1,27 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.ipynb_checkpoints/
+
+# Dataset folders
+archive/
+datasets/
+
+# Upload/temp files
+static/uploads/
+uploads/
+*.jpg
+*.jpeg
+*.png
+*.mp4
+
+# OS files
+.DS_Store
+Thumbs.db
+
+*.pth
+*.h5
+*.pt
