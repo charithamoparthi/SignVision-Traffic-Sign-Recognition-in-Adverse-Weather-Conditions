@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% block title %}Live Camera Detection - SignVision AI{% endblock %}
+
+{% block content %}
+<section class="page-header bg-primary text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-video me-3"></i>Live Camera Detection
+        </h1>
+        <p class="lead">Real-time traffic sign detection using your webcam</p>
+    </div>
+</section>
+
+<section class="camera-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="camera-card">
+                    <div class="card-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0"><i class="fas fa-camera me-2"></i>Camera Feed</h4>
+                        <div>
+                            <button id="startBtn" class="btn btn-success btn-sm me-2">
+                                <i class="fas fa-play me-1"></i>Start Camera
+                            </button>
+                            <button id="stopBtn" class="btn btn-danger btn-sm" disabled>
+                                <i class="fas fa-stop me-1"></i>Stop Camera
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body text-center">
+                        <div class="position-relative d-inline-block">
+                            <video id="video" autoplay playsinline width="640" height="480" class="border rounded bg-dark"></video>
+                            <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+
+                            <!-- Focus Box -->
+                            <div style="
+                                position:absolute;
+                                top:25%;
+                                left:25%;
+                                width:50%;
+                                height:50%;
+                                border:3px solid yellow;
+                                pointer-events:none;">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <h5 id="predictionText" class="text-primary">Waiting for detection...</h5>
+                            <p id="confidenceText" class="text-muted">Confidence: --</p>
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-light">
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <small class="text-muted d-block mb-1">Status</small>
+                                <span id="statusText" class="badge bg-secondary">Ready</span>
+                            </div>
+                            <div class="col-md-4">
+                                <small class="text-muted d-block mb-1">Detection</small>
+                                <span id="detectionStatus" class="badge bg-info">Waiting...</span>
+                            </div>
+                            <div class="col-md-4">
+                                <small class="text-muted d-block mb-1">Voice Alerts</small>
+                                <span class="badge bg-success">Enabled</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info mt-4">
+            <h5><i class="fas fa-lightbulb me-2"></i>How to Use:</h5>
+            <ul class="mb-0">
+                <li>Click <b>Start Camera</b></li>
+                <li>Allow browser camera permission</li>
+                <li>Place the traffic sign inside the yellow focus box</li>
+                <li>The system will classify the sign automatically</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<style>
+.camera-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+video {
+    object-fit: cover;
+}
+</style>
+
+<script>
+let video = document.getElementById("video");
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+
+let startBtn = document.getElementById("startBtn");
+let stopBtn = document.getElementById("stopBtn");
+
+let statusText = document.getElementById("statusText");
+let detectionStatus = document.getElementById("detectionStatus");
+let predictionText = document.getElementById("predictionText");
+let confidenceText = document.getElementById("confidenceText");
+
+let stream = null;
+let detectionInterval = null;
+let lastSpoken = "";
+
+startBtn.addEventListener("click", async () => {
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        video.srcObject = stream;
+
+        statusText.innerText = "Active";
+        statusText.className = "badge bg-success";
+
+        detectionStatus.innerText = "Monitoring...";
+        detectionStatus.className = "badge bg-warning";
+
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+
+        startDetectionLoop();
+    } catch (error) {
+        alert("Camera access denied or not available.");
+        console.error(error);
+
+        statusText.innerText = "Error";
+        statusText.className = "badge bg-danger";
+    }
+});
+
+stopBtn.addEventListener("click", () => {
+    stopCamera();
+});
+
+function stopCamera() {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+    }
+
+    if (detectionInterval) {
+        clearInterval(detectionInterval);
+        detectionInterval = null;
+    }
+
+    video.srcObject = null;
+
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+
+    statusText.innerText = "Stopped";
+    statusText.className = "badge bg-secondary";
+
+    detectionStatus.innerText = "Waiting...";
+    detectionStatus.className = "badge bg-info";
+
+    predictionText.innerText = "Waiting for detection...";
+    confidenceText.innerText = "Confidence: --";
+}
+
+function startDetectionLoop() {
+    detectionInterval = setInterval(async () => {
+        if (!stream) return;
+
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        let imageData = canvas.toDataURL("image/jpeg");
+
+        try {
+            let response = await fetch("/predict_frame", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ image: imageData })
+            });
+
+            let result = await response.json();
+
+            if (result.status === "success") {
+                predictionText.innerText = "Detected: " + result.class_name;
+                confidenceText.innerText = "Confidence: " + result.confidence;
+
+                if (result.confidence >= 0.70) {
+                    detectionStatus.innerText = "Detected";
+                    detectionStatus.className = "badge bg-success";
+
+                    // Browser voice
+                    if (result.speak && result.class_name !== lastSpoken) {
+                        let utterance = new SpeechSynthesisUtterance("Traffic sign detected: " + result.class_name);
+                        speechSynthesis.speak(utterance);
+                        lastSpoken = result.class_name;
+                    }
+                } else {
+                    detectionStatus.innerText = "Low Confidence";
+                    detectionStatus.className = "badge bg-warning";
+                }
+            }
+        } catch (error) {
+            console.error("Prediction error:", error);
+        }
+    }, 2000); // every 2 seconds
+}
+
+window.addEventListener("beforeunload", () => {
+    stopCamera();
+});
+</script>
+{% endblock %}

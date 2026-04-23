@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Home - Traffic Sign Detection System{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-traffic-light text-warning me-3"></i>
+                    AI-Powered Traffic Sign Detection
+                </h1>
+                <p class="lead mb-4">
+                    Advanced computer vision technology that accurately identifies and classifies traffic signs in real-time.
+                    Enhance road safety with our state-of-the-art deep learning models.
+                </p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="{{ url_for('detect') }}" class="btn btn-warning btn-lg px-4">
+                        <i class="fas fa-search me-2"></i>Upload Image
+                    </a>
+                    <a href="{{ url_for('live_camera') }}" class="btn btn-success btn-lg px-4">
+                        <i class="fas fa-video me-2"></i>Live Camera
+                    </a>
+                    <a href="{{ url_for('about') }}" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="fas fa-robot display-1 text-warning mb-3"></i>
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                                <small>Deep Learning</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-eye"></i>
+                                <small>Computer Vision</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                                <small>Real-time</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold mb-3">Why Choose SignVision AI?</h2>
+                <p class="lead text-muted">Cutting-edge technology for accurate traffic sign recognition</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-bolt text-primary"></i>
+                    </div>
+                    <h4>High Accuracy</h4>
+                    <p>Advanced CNN and object detection models trained on thousands of traffic sign images for precise identification.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-shield-alt text-success"></i>
+                    </div>
+                    <h4>Road Safety</h4>
+                    <p>Contributes to safer driving by helping drivers quickly identify and respond to traffic signs.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-cogs text-warning"></i>
+                    </div>
+                    <h4>Multiple Models</h4>
+                    <p>Combines the power of Faster R-CNN, YOLOv8, and custom CNN models for optimal performance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Stats Section -->
+<section class="stats-section bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <h3 class="display-4 text-primary fw-bold">43</h3>
+                    <p class="mb-0">Traffic Sign Classes</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <h3 class="display-4 text-success fw-bold">99%</h3>
+                    <p class="mb-0">Detection Accuracy</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <h3 class="display-4 text-warning fw-bold">24/7</h3>
+                    <p class="mb-0">Real-time Processing</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <h3 class="display-4 text-info fw-bold">AI</h3>
+                    <p class="mb-0">Powered Technology</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-3">Ready to Experience AI Traffic Sign Detection?</h2>
+        <p class="lead mb-4">Upload an image and see our AI in action</p>
+        <a href="{{ url_for('detect') }}" class="btn btn-warning btn-lg px-5">
+            <i class="fas fa-upload me-2"></i>Get Started Now
+        </a>
+    </div>
+</section>
+{% endblock %}

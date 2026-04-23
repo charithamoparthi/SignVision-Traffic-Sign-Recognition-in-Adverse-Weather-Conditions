@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Detect Traffic Signs - SignVision AI{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="page-header bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold mb-3">
+                    <i class="fas fa-search me-3"></i>
+                    Traffic Sign Detection
+                </h1>
+                <p class="lead">Upload an image and let our AI identify traffic signs with high accuracy</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Upload Section -->
+<section class="upload-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="upload-card">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-cloud-upload-alt display-1 text-primary mb-3"></i>
+                        <h3>Upload Your Image</h3>
+                        <p class="text-muted">Select a clear image containing traffic signs for best results</p>
+                    </div>
+
+                    <form id="upload-file" method="post" enctype="multipart/form-data" class="mb-4">
+                        <div class="upload-area">
+                            <label for="imageUpload" class="upload-label">
+                                <i class="fas fa-plus-circle me-2"></i>
+                                Choose Image
+                            </label>
+                            <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" class="d-none">
+                            <div class="upload-info">
+                                <small class="text-muted">Supported formats: PNG, JPG, JPEG</small>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="image-section" style="display:none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="img-preview">
+                                    <div id="imagePreview"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div class="w-100">
+                                    <button type="button" class="btn btn-primary btn-lg w-100 mb-3" id="btn-predict">
+                                        <i class="fas fa-brain me-2"></i>Analyze Image
+                                    </button>
+                                    <div class="loader text-center" style="display:none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Analyzing...</span>
+                                        </div>
+                                        <p class="mt-2 text-muted">AI is processing your image...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="result" class="result-display mt-4" style="display:none;">
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <strong>Detection Result:</strong>
+                            <span id="result-text"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Info -->
+<section class="features-info bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <i class="fas fa-clock text-primary display-4 mb-3"></i>
+                <h5>Real-time Processing</h5>
+                <p>Get results in seconds with our optimized AI models</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-shield-alt text-success display-4 mb-3"></i>
+                <h5>High Accuracy</h5>
+                <p>Trained on thousands of traffic sign images for reliable detection</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-volume-up text-warning display-4 mb-3"></i>
+                <h5>Voice Alerts</h5>
+                <p>Hear the detected sign type for hands-free operation</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

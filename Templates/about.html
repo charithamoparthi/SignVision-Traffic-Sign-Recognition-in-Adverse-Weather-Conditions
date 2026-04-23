@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% block title %}About - Traffic Sign Detection Technology{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="page-header bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold mb-3">About SignVision AI</h1>
+                <p class="lead text-muted">Understanding our advanced traffic sign detection technology</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Overview -->
+<section class="technology-section py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold mb-4">How Traffic Sign Detection Works</h2>
+                <p class="lead">
+                    Our system uses state-of-the-art computer vision and deep learning techniques to identify and classify
+                    traffic signs from images with high accuracy and speed.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="tech-step">
+                    <div class="step-number">1</div>
+                    <h4>Image Preprocessing</h4>
+                    <p>Images are resized, normalized, and enhanced to optimize feature extraction for the neural network.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="tech-step">
+                    <div class="step-number">2</div>
+                    <h4>Feature Extraction</h4>
+                    <p>Convolutional layers extract meaningful features like shapes, colors, and patterns from traffic signs.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="tech-step">
+                    <div class="step-number">3</div>
+                    <h4>Classification</h4>
+                    <p>The model classifies the sign into one of 43 predefined categories using trained neural network weights.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="tech-step">
+                    <div class="step-number">4</div>
+                    <h4>Voice Alert</h4>
+                    <p>Results are announced via text-to-speech for accessibility and hands-free operation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Models Section -->
+<section class="models-section bg-light py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold mb-4">AI Models & Technologies</h2>
+                <p class="lead text-muted">Multiple cutting-edge models working together for optimal performance</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="model-card h-100">
+                    <div class="model-icon mb-3">
+                        <i class="fas fa-network-wired text-primary"></i>
+                    </div>
+                    <h4>Convolutional Neural Network (CNN)</h4>
+                    <p>Custom CNN model trained on traffic sign dataset for classification tasks. Optimized for speed and accuracy.</p>
+                    <div class="model-specs">
+                        <small><strong>Framework:</strong> TensorFlow/Keras</small><br>
+                        <small><strong>Architecture:</strong> Conv2D + Dense layers</small><br>
+                        <small><strong>Input Size:</strong> 30x30 pixels</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="model-card h-100">
+                    <div class="model-icon mb-3">
+                        <i class="fas fa-crosshairs text-success"></i>
+                    </div>
+                    <h4>Faster R-CNN</h4>
+                    <p>Region-based object detection model for precise localization and classification of traffic signs in complex scenes.</p>
+                    <div class="model-specs">
+                        <small><strong>Framework:</strong> PyTorch</small><br>
+                        <small><strong>Use Case:</strong> Object detection</small><br>
+                        <small><strong>Accuracy:</strong> High precision</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="model-card h-100">
+                    <div class="model-icon mb-3">
+                        <i class="fas fa-bolt text-warning"></i>
+                    </div>
+                    <h4>YOLOv8</h4>
+                    <p>You Only Look Once (YOLO) model for real-time object detection with excellent speed-accuracy balance.</p>
+                    <div class="model-specs">
+                        <small><strong>Framework:</strong> PyTorch</small><br>
+                        <small><strong>Speed:</strong> Real-time</small><br>
+                        <small><strong>Model:</strong> yolov8n (nano)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dataset Section -->
+<section class="dataset-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="display-5 fw-bold mb-4">Training Data</h2>
+                <p class="lead mb-4">
+                    Our models are trained on the German Traffic Sign Recognition Benchmark (GTSRB) dataset,
+                    one of the most comprehensive traffic sign datasets available.
+                </p>
+
+                <div class="dataset-stats">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <h4 class="text-primary">51,840</h4>
+                                <small>Training Images</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <h4 class="text-success">12,630</h4>
+                                <small>Test Images</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <h4 class="text-warning">43</h4>
+                                <small>Sign Classes</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <h4 class="text-info">Variable</h4>
+                                <small>Image Sizes</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="fas fa-database display-1 text-primary mb-4"></i>
+                    <h4>Dataset Features</h4>
+                    <ul class="list-unstyled text-start">
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Real-world conditions</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Various weather conditions</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Different lighting scenarios</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Multiple viewing angles</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Occlusion and motion blur</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Applications Section -->
+<section class="applications-section bg-light py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold mb-4">Real-World Applications</h2>
+                <p class="lead text-muted">Where traffic sign detection technology makes a difference</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="application-card">
+                    <div class="app-icon mb-3">
+                        <i class="fas fa-car text-primary"></i>
+                    </div>
+                    <h4>Autonomous Vehicles</h4>
+                    <p>Critical component for self-driving cars to understand and obey traffic regulations.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="application-card">
+                    <div class="app-icon mb-3">
+                        <i class="fas fa-mobile-alt text-success"></i>
+                    </div>
+                    <h4>Driver Assistance Apps</h4>
+                    <p>Mobile applications that help drivers identify signs and improve road safety awareness.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="application-card">
+                    <div class="app-icon mb-3">
+                        <i class="fas fa-traffic-light text-warning"></i>
+                    </div>
+                    <h4>Traffic Management</h4>
+                    <p>Smart city infrastructure for monitoring and managing traffic sign compliance.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="application-card">
+                    <div class="app-icon mb-3">
+                        <i class="fas fa-graduation-cap text-info"></i>
+                    </div>
+                    <h4>Driver Education</h4>
+                    <p>Educational tools for teaching new drivers about different types of traffic signs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

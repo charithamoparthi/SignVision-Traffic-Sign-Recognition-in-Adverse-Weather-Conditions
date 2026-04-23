@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Traffic Sign Classes - SignVision AI{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="page-header bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold mb-3">Traffic Sign Classes</h1>
+                <p class="lead text-muted">All 43 traffic sign categories our AI can detect and classify</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sign Classes Grid -->
+<section class="sign-classes-section py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Our AI system can identify and classify 43 different types of traffic signs, ranging from speed limits to warning signs and directional indicators.
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for class_id, class_name in classes.items() %}
+            <div class="col-lg-4 col-md-6">
+                <div class="sign-class-card h-100">
+                    <div class="sign-class-header">
+                        <span class="sign-class-id">{{ class_id }}</span>
+                        <div class="sign-icon">
+                            <i class="fas fa-traffic-light"></i>
+                        </div>
+                    </div>
+                    <div class="sign-class-body">
+                        <h5 class="sign-class-name">{{ class_name }}</h5>
+                        <div class="sign-category">
+                            {% if 'Speed limit' in class_name %}
+                                <span class="badge bg-primary">Speed Regulation</span>
+                            {% elif 'No passing' in class_name or 'No vehicles' in class_name or 'No entry' in class_name %}
+                                <span class="badge bg-danger">Prohibition</span>
+                            {% elif 'Yield' in class_name or 'Stop' in class_name or 'Priority' in class_name %}
+                                <span class="badge bg-warning text-dark">Priority</span>
+                            {% elif 'warning' in class_name.lower() or 'caution' in class_name.lower() or 'dangerous' in class_name.lower() %}
+                                <span class="badge bg-orange">Warning</span>
+                            {% elif 'Turn' in class_name or 'Keep' in class_name or 'Roundabout' in class_name or 'mandatory' in class_name.lower() %}
+                                <span class="badge bg-info">Directional</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Other</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Legend -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h4 class="mb-3">Sign Categories:</h4>
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="badge bg-primary me-2">Speed Regulation</span>
+                        <small>Speed limits and related restrictions</small>
+                    </div>
+                    <div class="legend-item">
+                        <span class="badge bg-danger me-2">Prohibition</span>
+                        <small>No-entry and restriction signs</small>
+                    </div>
+                    <div class="legend-item">
+                        <span class="badge bg-warning text-dark me-2">Priority</span>
+                        <small>Right-of-way and stopping signs</small>
+                    </div>
+                    <div class="legend-item">
+                        <span class="badge bg-orange me-2">Warning</span>
+                        <small>Hazard and caution signs</small>
+                    </div>
+                    <div class="legend-item">
+                        <span class="badge bg-info me-2">Directional</span>
+                        <small>Navigation and movement signs</small>
+                    </div>
+                    <div class="legend-item">
+                        <span class="badge bg-secondary me-2">Other</span>
+                        <small>Miscellaneous traffic signs</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <div class="cta-box">
+                    <h4>Ready to test our AI?</h4>
+                    <p class="mb-3">Upload an image and see how accurately our system can identify traffic signs</p>
+                    <a href="{{ url_for('detect') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-upload me-2"></i>Try Detection Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
